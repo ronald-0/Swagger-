@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "3NJOGD/+U13j2szQBQ24rBclh2wKGW/Xq7Ub+02bOzISB+lKL0WXIqVNIo3SZxQrMFMKWAwrBibj6XzFQEUbKQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\cyberinterns\\cyberinterns.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.app\\2.2.0\\microsoft.netcore.app.2.2.0.nupkg.sha512",
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.dotnetapphost\\2.2.0\\microsoft.netcore.dotnetapphost.2.2.0.nupkg.sha512",
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.dotnethostpolicy\\2.2.0\\microsoft.netcore.dotnethostpolicy.2.2.0.nupkg.sha512",
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.dotnethostresolver\\2.2.0\\microsoft.netcore.dotnethostresolver.2.2.0.nupkg.sha512",
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.platforms\\2.2.0\\microsoft.netcore.platforms.2.2.0.nupkg.sha512",
+    "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\microsoft.netcore.targets\\2.0.0\\microsoft.netcore.targets.2.0.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
