@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\BookAPI\\BookAPI.csproj": {}
+    "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\Ronald\\cyberInterns\\BookAPI\\BookAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\BookAPI\\BookAPI.csproj": {
+    "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\Ronald\\cyberInterns\\BookAPI\\BookAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\BookAPI\\BookAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\Ronald\\cyberInterns\\BookAPI\\BookAPI.csproj",
         "projectName": "BookAPI",
-        "projectPath": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\BookAPI\\BookAPI.csproj",
+        "projectPath": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\Ronald\\cyberInterns\\BookAPI\\BookAPI.csproj",
         "packagesPath": "C:\\Users\\Ronald Onwubuya\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\cyberInterns\\BookAPI\\obj\\",
+        "outputPath": "C:\\Users\\Ronald Onwubuya\\Documents\\Cyberspace Limited\\CyberSpace Assignments\\Ronald\\cyberInterns\\BookAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

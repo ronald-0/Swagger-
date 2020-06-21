@@ -98,7 +98,10 @@ namespace BookAPI
 
             services.AddScoped<IAuthor, AuthorService>();
             services.AddScoped<IUser, UserService>();
-
+            services.AddScoped<IBook, BookService>();
+            services.AddScoped<ICategory, CategoryService>();
+            services.AddScoped<IGenre, GenreService>();
+            services.AddScoped<IReaders, ReadersService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
