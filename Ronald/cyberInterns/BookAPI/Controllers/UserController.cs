@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace BookAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -104,6 +106,10 @@ namespace BookAPI.Controllers
 
             var Expires = tokenDescriptor.Expires.ToString();
 
+
+
+
+
             // return basic user info (without password) and token to store client side
             return Ok(new
             {
@@ -117,48 +123,5 @@ namespace BookAPI.Controllers
             });
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _userService.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _userService.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] User user)
-        {
-            user.Id = id;
-            var updateUser = await _userService.Update(user);
-
-            if (updateUser)
-            {
-                return Ok("User Updated");
-            }
-            else
-            {
-                return BadRequest(new { message = "Unable to update user details" });
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var deleteUser = await _userService.Delete(id);
-            if (deleteUser)
-            {
-                return Ok("User Deleted");
-            }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete user details" });
-            }
-        }
     }
 }

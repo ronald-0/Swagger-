@@ -1,0 +1,62 @@
+﻿<Properties StartupConfiguration="{F748B7AB-384D-49C7-BCC5-F9A4EA4DEFFE}|Default">
+  <MonoDevelop.Ide.ItemProperties.cyberinterns PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BookAPI/Controllers/AccountController.cs">
+    <Files>
+      <File FileName="BookAPI/Controllers/ValuesController.cs" Line="43" Column="10" />
+      <File FileName="BookAPI/appsettings.json" />
+      <File FileName="BookAPI/Program.cs" />
+      <File FileName="BookAPI/Startup.cs" Line="114" Column="60" />
+      <File FileName="BookAPI/Entities/Author.cs" />
+      <File FileName="BookAPI/Entities/Book.cs" />
+      <File FileName="BookAPI/Entities/Genre.cs" />
+      <File FileName="BookAPI/Data/BookApiDataContext.cs" Line="17" Column="45" />
+      <File FileName="BookAPI/appsettings.Development.json" />
+      <File FileName="BookAPI/Migrations/20200611092225_InitialCommit.cs" />
+      <File FileName="BookAPI/Entities/Category.cs" />
+      <File FileName="BookAPI/Migrations/20200611094252_AddedCategory.cs" />
+      <File FileName="BookAPI/Services/AuthorService.cs" />
+      <File FileName="BookAPI/Controllers/AuthorController.cs" Line="48" Column="48" />
+      <File FileName="BookAPI/Properties/launchSettings.json" Line="23" Column="33" />
+      <File FileName="BookAPI/Entities/User.cs" Line="13" Column="45" />
+      <File FileName="BookAPI/Migrations/BookApiDataContextModelSnapshot.cs" Line="1" Column="1" />
+      <File FileName="BookAPI/Interface/IUser.cs" />
+      <File FileName="BookAPI/Services/UserService.cs" Line="52" Column="31" />
+      <File FileName="BookAPI/Controllers/UserController.cs" Line="72" Column="85" />
+      <File FileName="BookAPI/Dtos/UserDto.cs" Line="15" Column="18" />
+      <File FileName="BookAPI/Entities/ApplicationUser.cs" Line="20" Column="14" />
+      <File FileName="BookAPI/Entities/ApplicationRole.cs" Line="6" Column="44" />
+      <File FileName="BookAPI/Interface/IAccount.cs" Line="12" Column="57" />
+      <File FileName="BookAPI/Dtos/SignInModel.cs" Line="4" Column="29" />
+      <File FileName="BookAPI/Services/AccountService.cs" Line="37" Column="32" />
+      <File FileName="BookAPI/Controllers/AccountController.cs" Line="19" Column="19" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="cyberinterns" expanded="True">
+            <Node name="BookAPI" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="SdkDependencies" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="AccountController.cs" selected="True" />
+              </Node>
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.basicTypes PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/abdullahi/Projects/cyberinterns/BookAPI/Controllers/AuthorController.cs" relfile="BookAPI/Controllers/AuthorController.cs" line="81" column="1" />
+      <Breakpoint file="/Users/abdullahi/Projects/cyberinterns/BookAPI/Services/AuthorService.cs" relfile="BookAPI/Services/AuthorService.cs" line="41" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.BookAPI PreferredExecutionTarget="/Applications/Safari.app" />
+</Properties>

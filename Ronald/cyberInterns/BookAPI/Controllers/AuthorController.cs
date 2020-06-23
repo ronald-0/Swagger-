@@ -43,7 +43,7 @@ namespace BookAPI.Controllers
                 return BadRequest(new { message = "Unable to create Author details" });
             }
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

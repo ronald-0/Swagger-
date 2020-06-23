@@ -4,14 +4,16 @@ using BookAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookAPI.Migrations
 {
     [DbContext(typeof(BookApiDataContext))]
-    partial class BookApiDataContextModelSnapshot : ModelSnapshot
+    [Migration("20200622094742_IdentityManager")]
+    partial class IdentityManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,15 +60,9 @@ namespace BookAPI.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("MiddleName");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);

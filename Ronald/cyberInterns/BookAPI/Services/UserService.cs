@@ -4,8 +4,6 @@ using System.Linq;
 using BookAPI.Data;
 using BookAPI.Entities;
 using BookAPI.Interface;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookAPI.Services
 {
@@ -23,7 +21,7 @@ namespace BookAPI.Services
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 return null;
 
-            var user = _context.Users.SingleOrDefault(x => x.Username == username || x.Email == username);
+            var user = _context.BookUsers.SingleOrDefault(x => x.Username == username || x.Email == username);
 
             // check if username exists
             if (user == null)
@@ -42,7 +40,7 @@ namespace BookAPI.Services
             if (string.IsNullOrWhiteSpace(password))
                 throw new Exception("Password is required");
 
-            if (_context.Users.Any(x => x.Username == user.Username || x.Email == user.Email))
+            if (_context.BookUsers.Any(x => x.Username == user.Username || x.Email == user.Email))
                 throw new Exception("Username \"" + user.Username + "\" or Email \"" + user.Email + " is already taken");
 
             byte[] passwordHash, passwordSalt;
@@ -51,56 +49,30 @@ namespace BookAPI.Services
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
-            _context.Users.Add(user);
+            _context.BookUsers.Add(user);
             _context.SaveChanges();
 
             return user;
         }
 
-        public async Task<bool> Delete(int Id)
+        public void Delete(int id)
         {
-            // find the entity/object
-            var user = await _context.Users.FindAsync(Id);
-
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                _context.SaveChanges();
-                return true;
-            }
-
-            return false;
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetAll()
+        public IEnumerable<User> GetAll()
         {
-
-            return await _context.Users.ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<User> GetById(int Id)
+        public User GetById(int id)
         {
-            var user = await _context.Users.FindAsync(Id);
-
-            return user;
+            throw new NotImplementedException();
         }
 
-        public async Task<bool> Update(User user, string password = null)
+        public void Update(User user, string password = null)
         {
-            var us = await _context.Users.FindAsync(user.Id);
-            if (us != null)
-            {
-                us.FirstName = user.FirstName;
-                us.LastName = user.LastName;
-                us.Username = user.Username;
-                us.Email = user.Email;
-                us.PhoneNo = user.PhoneNo;
-
-                await _context.SaveChangesAsync();
-                return true;
-            }
-
-            return false;
+            throw new NotImplementedException();
         }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)

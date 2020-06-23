@@ -9,3 +9,4 @@
 /Users/abdullahi/Projects/cyberinterns/cyberinterns/obj/Debug/netcoreapp2.2/cyberinterns.dll
 /Users/abdullahi/Projects/cyberinterns/cyberinterns/obj/Debug/netcoreapp2.2/cyberinterns.pdb
 /Users/abdullahi/Projects/cyberinterns/cyberinterns/obj/Debug/netcoreapp2.2/cyberinterns.genruntimeconfig.cache
+/Users/abdullahi/Projects/cyberinterns/cyberinterns/obj/Debug/netcoreapp2.2/cyberinterns.csprojAssemblyReference.cache

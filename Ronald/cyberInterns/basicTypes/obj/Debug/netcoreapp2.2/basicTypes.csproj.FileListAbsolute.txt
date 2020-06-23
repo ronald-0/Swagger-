@@ -10,3 +10,6 @@
 /Users/abdullahi/Projects/cyberinterns/basicTypes/obj/Debug/netcoreapp2.2/basicTypes.dll
 /Users/abdullahi/Projects/cyberinterns/basicTypes/obj/Debug/netcoreapp2.2/basicTypes.pdb
 /Users/abdullahi/Projects/cyberinterns/basicTypes/obj/Debug/netcoreapp2.2/basicTypes.genruntimeconfig.cache
+/Users/abdullahi/Projects/cyberinterns/basicTypes/bin/Debug/netcoreapp2.2/cyberinterns.dll
+/Users/abdullahi/Projects/cyberinterns/basicTypes/bin/Debug/netcoreapp2.2/cyberinterns.pdb
+/Users/abdullahi/Projects/cyberinterns/basicTypes/obj/Debug/netcoreapp2.2/basicTypes.csproj.CopyComplete

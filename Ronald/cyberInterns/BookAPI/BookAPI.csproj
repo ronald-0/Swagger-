@@ -21,8 +21,5 @@
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Data\" />
-    <Folder Include="Services\" />
-    <Folder Include="Interface\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
 </Project>

@@ -1,10 +1,11 @@
 ﻿using System;
 using BookAPI.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookAPI.Data
 {
-    public class BookApiDataContext : DbContext
+    public class BookApiDataContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public BookApiDataContext(DbContextOptions<BookApiDataContext> options) : base(options)
         {
@@ -14,7 +15,7 @@ namespace BookAPI.Data
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Readers> Readers { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<User> BookUsers { get; set; }
     }
 }
 
