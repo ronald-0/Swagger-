@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BookWeb.Entities.Book>
+@{
+    ViewData["Title"] = "Book";
+}
+<!-- ============================================================== -->
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-themecolor">Book</h3>
+    </div>
+  <!--<div class="col-md-7 align-self-center">
+       <a href="https://wrappixel.com/templates/adminpro/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down"> Upgrade to Pro</a>
+    </div>-->
+</div>
+
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">List</h4>
+                <!-- <h6 class="card-subtitle">Add New Book</h6>-->
+                <div class="col-md-12 col-12 align-self-center">
+                    <a asp-controller="Book" asp-action="Create" class="btn float-right hidden-sm-down btn-success"><i class="mdi mdi-plus-circle"></i>New Book</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>AuthorId</th>
+                                <th>GerneId</th>
+                                <th>ISBN</th>
+                                <th>YearPublish</th>
+                                <th>Rating</th>
+                                <th>Summary</th>
+                                <th>CreatedBy</th>
+                                <th>DateCreated</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var book in Model)
+                            {
+                            <tr>
+                                <td>@book.Id</td>
+                                <td>@book.Title </td>
+                                <td>@book.AuthorId  </td>
+                                <td>@book.GerneID  </td>
+                                <td>@book.ISBN   </td>
+                                <td>@book.YearPublish   </td>
+                                <td>@book.Rating  </td>
+                                <td>@book.Summary   </td>
+                                <td>@book.CreatedBy   </td>
+                                <td>@book.DateCreated  </td>
+                                <td><a asp-action="Edit" asp-route-id="@book.Id" alt="Edit"><i class="fa fa-pencil m-r-10" aria-hidden="true"></i></a> </td>
+                                <td><a asp-action="Delete" asp-route-id="@book.Id"><i class="fa fa-trash-o m-r-10" aria-hidden="true"></i></a> </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

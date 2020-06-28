@@ -1,0 +1,83 @@
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/appsettings.Development.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/appsettings.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/Properties/launchSettings.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.deps.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.runtimeconfig.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.runtimeconfig.dev.json
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.dll
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.pdb
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.Views.dll
+/Users/abdullahi/Projects/cyberinterns/BookWeb/bin/Debug/netcoreapp2.2/BookWeb.Views.pdb
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.AssemblyInfoInputs.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.AssemblyInfo.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.csproj.CoreCompileInputs.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.RazorAssemblyInfo.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.RazorAssemblyInfo.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.TagHelpers.input.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.TagHelpers.output.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.RazorCoreGenerate.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Author/Create.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Author/Index.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Home/Index.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Home/Privacy.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Shared/Error.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_CookieConsentPartial.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_Layout.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/Shared/_ValidationScriptsPartial.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/_ViewImports.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/Razor/Views/_ViewStart.cshtml.g.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.RazorTargetAssemblyInfo.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.RazorTargetAssemblyInfo.cs
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.Views.pdb
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.dll
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.pdb
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.genruntimeconfig.cache
+/Users/abdullahi/Projects/cyberinterns/BookWeb/obj/Debug/netcoreapp2.2/BookWeb.csproj.CopyComplete
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.deps.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.runtimeconfig.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.runtimeconfig.dev.json
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.dll
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.pdb
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.Views.dll
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\bin\Debug\netcoreapp2.2\BookWeb.Views.pdb
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.csprojAssemblyReference.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.csproj.CoreCompileInputs.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.RazorAssemblyInfo.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.RazorAssemblyInfo.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.AssemblyInfoInputs.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.AssemblyInfo.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.TagHelpers.input.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.TagHelpers.output.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.RazorCoreGenerate.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Author\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Author\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.RazorTargetAssemblyInfo.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.RazorTargetAssemblyInfo.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.Views.pdb
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.dll
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.pdb
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.genruntimeconfig.cache
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\BookWeb.csproj.CopyComplete
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Book\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Book\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Category\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Category\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Genre\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Genre\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Readers\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Readers\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Role\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\Role\Index.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\User\Create.cshtml.g.cs
+C:\Users\Ronald Onwubuya\Documents\Cyberspace Limited\CyberSpace Assignments\BookWeb\BookWeb\obj\Debug\netcoreapp2.2\Razor\Views\User\Index.cshtml.g.cs
