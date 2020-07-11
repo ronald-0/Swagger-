@@ -1,88 +1,107 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Entities;
-using BookWeb.Interface;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using BookWeb.Models;
+using BookWeb.Interface;
+using BookWeb.Entities;
+using BookWeb.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class GenreController : ControllerBase
+    public class GenreController : BaseController
     {
         private IGenre _genre;
-        public GenreController(IGenre genre)
-            {
-                _genre = genre;
-            }
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        [HttpPost]
-        public void Post([FromBody] Genre genre)
+        public GenreController(IGenre genre, UserManager<ApplicationUser> userManager)
         {
-            _genre.Add(genre);
+            _genre = genre;
+            _userManager = userManager;
         }
 
-        [HttpPost("AddGenre")]
-        public async Task<IActionResult> AddGenre([FromBody] Genre genre)
+        public async Task<IActionResult> Index()
         {
+            var model = await _genre.GetAll();
+
+            if (model != null)
+                return View(model);
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Genre genre)
+        {
+            genre.CreatedBy = _userManager.GetUserName(User);
+            genre.DateCreated = DateTime.Now;
             var createGenre = await _genre.AddAsync(genre);
 
             if (createGenre)
             {
-                return Ok("Genre Created");
-            }
-            else{
-                return BadRequest(new { message = "Unable to create Genre details" });
-            }
-        }
+                Alert("Genre created successfully.", NotificationType.success);
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _genre.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _genre.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Genre genre)
-        {
-            genre.Id = id;
-            var updateGenre = await _genre.Update(genre);
-
-            if (updateGenre)
-            {
-                return Ok("Genre Updated");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return BadRequest(new { message = "Unable to update Genre details" });
+                Alert("Genre not created.", NotificationType.success);
+
             }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var editGenre = await _genre.GetById(id);
+
+            if (editGenre == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(editGenre);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpPost]
+        public async Task<IActionResult> Edit(Genre genre)
+        {
+            var editGenre = await _genre.Update(genre);
+
+            if (editGenre && ModelState.IsValid)
+            {
+                Alert("Genre edited successfully.", NotificationType.success);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Alert("Genre not edited!", NotificationType.error);
+            }
+            return View();
+        }
+
         public async Task<IActionResult> Delete(int id)
         {
             var deleteGenre = await _genre.Delete(id);
             if (deleteGenre)
             {
-                return Ok("Genre Deleted");
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete Genre details" });
-            }
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

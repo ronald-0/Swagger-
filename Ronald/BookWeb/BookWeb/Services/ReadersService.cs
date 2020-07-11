@@ -6,7 +6,7 @@ using BookWeb.Entities;
 using BookWeb.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookAPI.Services
+namespace BookWeb.Services
 {
     public class ReadersService : IReaders
     {

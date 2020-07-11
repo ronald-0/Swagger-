@@ -1,116 +1,86 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using BookWeb.Dtos;
 using BookWeb.Entities;
+using BookWeb.Enums;
 using BookWeb.Interface;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using BookWeb.Models;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace BookAPI.Controllers
+namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    //[Authorize]
-    public class AccountController : ControllerBase
+    public class AccountController : BaseController
     {
-        private IAccount _account;
-        public AccountController(IAccount account)
-            {
+        private readonly IAccount _account;
+
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        public AccountController(IAccount account, SignInManager<ApplicationUser> signInManager)
+        {
             _account = account;
-            }
+            _signInManager = signInManager;
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] UserDtos registerUser)
+        public async Task<IActionResult> Login(LoginViewModel login)
         {
+            if (!ModelState.IsValid)
+            {
+                Alert("Login Unsuccesful!", NotificationType.error);
+                ModelState.AddModelError("", "UserName/Password is incorrect");
+                return View();
+            }
+            var signin = await _account.Login(login);
+            if (signin)
+            {
+                Alert("Login successful.", NotificationType.success);
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+        //////////
+
+        public async Task<IActionResult> SignUp(UserDtos u)
+        {
+            if (!ModelState.IsValid)
+            {
+                Alert("Sign Up Unsuccesful!", NotificationType.error);
+                ModelState.AddModelError("", "UserName/Password is incorrect");
+                return View();
+            }
             ApplicationUser user = new ApplicationUser();
+            user.UserName = u.Username;
+            user.Email = u.Email;
 
-            user.FirstName = registerUser.FirstName;
-            user.LastName = registerUser.LastName;
-            user.UserName = registerUser.Username;
-            user.Email = registerUser.Email;
+            var signUp = await _account.Signup(user, u.Password);
 
-
-            var newUser = await _account.CreateUser(user, registerUser.Password);
-            if (newUser)
-                return Ok(new { message = "User Created" });
-
-            return BadRequest(new { message = "User not created" });
+            if (signUp)
+            {
+                Alert("Account Created successfully.", NotificationType.success);
+                return RedirectToAction("login", "Account");
+            }
+            return View();
         }
 
-        [HttpPost("authenticate")]
-        public async Task<IActionResult> Authenticate([FromBody] LoginDto userDto)
+        [HttpGet]
+        public async Task<IActionResult> LogOut()
         {
-            var user = await _account.SignIn(userDto);
 
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
-
-            return Ok(user);
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
         }
 
-            //[HttpPost("AddAuthor")]
-            //public async Task<IActionResult> AddAuthor([FromBody] Author author)
-            //{
-            //    var createAuthor = await _author.AddAsync(author);
-
-            //    if (createAuthor)
-            //    {
-            //        return Ok("Author Created");
-            //    }
-            //    else{
-            //        return BadRequest(new { message = "Unable to create Author details" });
-            //    }
-            //}
-            //[AllowAnonymous]
-            //[HttpGet]
-            //public async Task<IActionResult> GetAll()
-            //{
-            //    var users = await _author.GetAll();
-            //    return Ok(users);
-            //}
-
-            //[HttpGet("{id}")]
-            //public async Task<IActionResult> GetById(int id)
-            //{
-            //    var user = await _author.GetById(id);
-            //    return Ok(user);
-            //}
-
-            //[HttpPut("{id}")]
-            //public async Task<IActionResult> Put(int id, [FromBody] Author author)
-            //{
-            //    author.Id = id;
-            //    var updateAuthor = await _author.Update(author);
-
-            //    if (updateAuthor)
-            //    {
-            //        return Ok("Author Updated");
-            //    }
-            //    else
-            //    {
-            //        return BadRequest(new { message = "Unable to update Author details" });
-            //    }
-            //}
-
-            //// DELETE api/values/5
-            //[HttpDelete("{id}")]
-            //public async Task<IActionResult> Delete(int id)
-            //{
-            //    var deleteAuthor = await _author.Delete(id);
-            //    if (deleteAuthor)
-            //    {
-            //        return Ok("Author Deleted");
-            //    }
-            //    else
-            //    {
-            //        return BadRequest(new { message = "Unable to delete Author details" });
-            //    }
-            //}
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
+}

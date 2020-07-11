@@ -15,3 +15,4 @@ namespace BookWeb.Entities
         public DateTime DateCreated { get; set; }
     }
 }
+ 

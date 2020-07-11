@@ -1,88 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Entities;
-using BookWeb.Interface;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using BookWeb.Models;
+using BookWeb.Interface;
+using BookWeb.Entities;
+using BookWeb.Enums;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController
     {
-        private ICategory _category;
-        public CategoryController(ICategory category)
-            {
-                _category = category;
-            }
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        [HttpPost]
-        public void Post([FromBody] Category category)
+        private ICategory _category;
+        public CategoryController(ICategory category, UserManager<ApplicationUser> userManager)
         {
-            _category.Add(category);
+            _category = category;
+            _userManager = userManager;
         }
 
-        [HttpPost("AddCategory")]
-        public async Task<IActionResult> AddCategory([FromBody] Category category)
+        public async Task<IActionResult> Index()
         {
+            var model = await _category.GetAll();
+
+            if (model != null)
+                return View(model);
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Category category)
+        {
+            category.CreatedBy = _userManager.GetUserName(User);
+            category.DateCreated = DateTime.Now;
             var createCategory = await _category.AddAsync(category);
 
             if (createCategory)
             {
-                return Ok("Category Created");
-            }
-            else{
-                return BadRequest(new { message = "Unable to create Category details" });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _category.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _category.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Category category)
-        {
-            category.Id = id;
-            var updateCategory = await _category.Update(category);
-
-            if (updateCategory)
-            {
-                return Ok("Category Updated");
+                Alert("Category created successfully.", NotificationType.success);
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                return BadRequest(new { message = "Unable to update Category details" });
+                Alert("Category not created.", NotificationType.success);
             }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var editCategory = await _category.GetById(id);
+
+            if (editCategory == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(editCategory);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(Category author)
+        {
+
+            var editCategory = await _category.Update(author);
+
+            if (editCategory && ModelState.IsValid)
+            {
+                Alert("Category edited successfully.", NotificationType.success);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Alert("Category not edited!", NotificationType.error);
+            }
+            return View();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteCategory = await _category.Delete(id);
             if (deleteCategory)
             {
-                return Ok("Category Deleted");
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete Category details" });
-            }
+            return View();
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

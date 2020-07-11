@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 using BookWeb.Data;
 using BookWeb.Entities;
 using BookWeb.Interface;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookAPI.Services
+namespace BookWeb.Services
 {
     public class BookService : IBook
     {
@@ -54,7 +53,7 @@ namespace BookAPI.Services
         public async Task<IEnumerable<Book>> GetAll()
         {
 
-            return await _context.Books.ToListAsync();
+            return await _context.Books.Include(a => a.Author).Include(g => g.Genre).ToListAsync();
         }
 
         public async Task<Book> GetById(int Id)
@@ -70,12 +69,12 @@ namespace BookAPI.Services
             if (aut != null)
             {
                 aut.Title = book.Title;
+                aut.GenreId = book.GenreId;
                 aut.AuthorId = book.AuthorId;
-                aut.GerneID = book.GerneID;
                 aut.ISBN = book.ISBN;
-                aut.YearPublish = book.YearPublish;
                 aut.Rating = book.Rating;
                 aut.Summary = book.Summary;
+                aut.YearPublish = book.YearPublish;
 
                 await _context.SaveChangesAsync();
                 return true;

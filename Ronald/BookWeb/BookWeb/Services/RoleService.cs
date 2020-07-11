@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using BookWeb.Data;
 
-namespace BookAPI.Services
+namespace BookWeb.Services
 {
     public class RoleService: IRole
     {

@@ -1,88 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Entities;
-using BookWeb.Interface;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+using BookWeb.Models;
+using BookWeb.Interface;
+using BookWeb.Entities;
+using BookWeb.Enums;
+using Microsoft.AspNetCore.Identity;
 namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReadersController : ControllerBase
+    public class ReadersController : BaseController
     {
         private IReaders _readers;
-        public ReadersController(IReaders readers)
-            {
-                _readers = readers;
-            }
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        [HttpPost]
-        public void Post([FromBody] Readers readers)
+        public ReadersController(IReaders readers, UserManager<ApplicationUser> userManager)
         {
-            _readers.Add(readers);
+            _readers = readers;
+            _userManager = userManager;
         }
 
-        [HttpPost("AddReaders")]
-        public async Task<IActionResult> AddReaders([FromBody] Readers readers)
+        public async Task<IActionResult> Index()
         {
+            var model = await _readers.GetAll();
+
+            if (model != null)
+                return View(model);
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Readers readers)
+        {
+
             var createReaders = await _readers.AddAsync(readers);
 
             if (createReaders)
             {
-                return Ok("Readers Created");
+                return RedirectToAction("Index", "Home");
             }
-            else{
-                return BadRequest(new { message = "Unable to create Readers details" });
-            }
+            return View();
         }
-
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Edit(int id)
         {
-            var users = await _readers.GetAll();
-            return Ok(users);
-        }
+            var editReaders = await _readers.GetById(id);
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _readers.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Readers readers)
-        {
-            readers.Id = id;
-            var updateReaders = await _readers.Update(readers);
-
-            if (updateReaders)
+            if (editReaders == null)
             {
-                return Ok("Readers Updated");
+                return RedirectToAction("Index");
+            }
+            return View(editReaders);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Readers readers)
+        {
+            var editReaders = await _readers.Update(readers);
+
+            if (editReaders && ModelState.IsValid)
+            {
+                Alert("Reader edited successfully.", NotificationType.success);
+                return RedirectToAction("Index");
             }
             else
             {
-                return BadRequest(new { message = "Unable to update Readers details" });
+                Alert("Reader not edited!", NotificationType.error);
             }
+            return View();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteReaders = await _readers.Delete(id);
             if (deleteReaders)
             {
-                return Ok("Readers Deleted");
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete Readers details" });
-            }
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

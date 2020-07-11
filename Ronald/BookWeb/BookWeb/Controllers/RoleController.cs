@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Dtos;
-using BookWeb.Entities;
-using BookWeb.Interface;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using BookWeb.Models;
+using BookWeb.Interface;
+using BookWeb.Entities;
 
 namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RoleController : ControllerBase
+    public class RoleController : Controller
     {
         private IRole _role;
         public RoleController(IRole role)
@@ -23,69 +18,71 @@ namespace BookWeb.Controllers
             _role = role;
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> Post([FromBody] RoleDtos registerRole)
+        public async Task<IActionResult> Index()
         {
-            ApplicationRole role = new ApplicationRole();
-            role.Name = registerRole.Name;
-            role.Name = registerRole.Name;
+            var model = await _role.ReadRoles();
 
-            var newRole = await _role.CreateRole(role);
-
-            if (newRole)
+            if (model != null)
             {
-                return Ok(new { message = "Role has been Created" });
-
+                return View(model);
             }
-            else
-            {
-                return BadRequest(new { message = "Role failed to be created" });
-            }
+            return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(ApplicationRole role)
+        {
 
+            var createRole = await _role.CreateRole(role);
+
+
+            if (createRole)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public IActionResult Create()
+        {
+
+            return View();
+        }
         [HttpGet]
-        public async Task<IActionResult> ReadRoles()
+        public async Task<IActionResult> Edit(string id)
         {
-            var role = await _role.ReadRoles();
-            return Ok(role);
-        }
+            var editRole = await _role.ReadId(id);
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ReadId(String Id)
-        {
-            var role = await _role.ReadId(Id);
-            return Ok(role);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(String Id, [FromBody] ApplicationRole role)
-        {
-            role.Id = Id;
-            var update = await _role.Update(role);
-
-            if (update)
+            if (editRole == null)
             {
-                return Ok("Role has been Updated");
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return BadRequest(new { message = "Unable to update Role details" });
-            }
+            return View(editRole);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(String Id)
+        [HttpPost]
+        public async Task<IActionResult> Edit(ApplicationRole role)
         {
-            var deleteRole = await _role.Delete(Id);
+            var editRole = await _role.Update(role);
+
+            if (editRole && ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public async Task<IActionResult> Delete(string id)
+        {
+            var deleteRole = await _role.Delete(id);
             if (deleteRole)
             {
-                return Ok("Role has been Deleted");
+                return RedirectToAction("Index");
             }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete Role details" });
-            }
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

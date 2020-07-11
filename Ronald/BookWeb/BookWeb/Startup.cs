@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Data;
-using BookWeb.Entities;
-using BookWeb.Interface;
-using BookWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +11,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BookWeb.Data;
+using BookWeb.Entities;
+using BookWeb.Interface;
+using BookWeb.Services;
+using BookWeb.Interfaces;
 
 namespace BookWeb
 {
@@ -37,9 +38,6 @@ namespace BookWeb
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             var connection = Configuration.GetConnectionString("Book");
 
             services.AddDbContext<BookWebDataContext>(options => options.UseSqlServer(connection));
@@ -54,9 +52,16 @@ namespace BookWeb
 
 
             services.AddScoped<IAuthor, AuthorService>();
+            services.AddScoped<IBook, BookService>();
+            services.AddScoped<ICategory, CategoryService>();
+            services.AddScoped<IGenre, GenreService>();
+            services.AddScoped<IReaders, ReadersService>();
             services.AddScoped<IUser, UserService>();
-
             services.AddScoped<IAccount, AccountService>();
+            services.AddScoped<IRole, RoleService>();
+
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +74,6 @@ namespace BookWeb
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -77,6 +81,7 @@ namespace BookWeb
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

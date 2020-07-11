@@ -1,88 +1,99 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using BookWeb.Entities;
-using BookWeb.Interface;
 using Microsoft.AspNetCore.Mvc;
+using BookWeb.Models;
+using BookWeb.Interface;
+using BookWeb.Entities;
+using BookWeb.Enums;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace BookAPI.Controllers
+namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BookController : ControllerBase
+    public class BookController : BaseController
     {
         private IBook _book;
-        public BookController(IBook book)
-            {
-                _book = book;
-            }
+        private IAuthor _author;
+        private IGenre _genre;
 
-        [HttpPost]
-        public void Post([FromBody] Book book)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public BookController(IBook book, IAuthor author, IGenre genre, UserManager<ApplicationUser> userManager)
         {
-            _book.Add(book);
+            _book = book;
+            _author = author;
+            _genre = genre;
+            _userManager = userManager;
         }
 
-        [HttpPost("AddBook")]
-        public async Task<IActionResult> AddBook([FromBody] Book book)
+        public async Task<IActionResult> Index()
         {
-            var createBook = await _book.AddAsync(book);
+            var model = await _book.GetAll();
+
+            if (model != null)
+                return View(model);
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var author = await _author.GetAll();
+            var authorList = author.Select(a => new SelectListItem()
+            {
+                Value = a.Id.ToString(),
+                Text = a.Title + " " + a.Name
+            });
+
+
+            ViewBag.author = authorList;
+
+            var genre = await _genre.GetAll();
+            var genreList = genre.Select(b => new SelectListItem()
+            {
+                Value = b.Id.ToString(),
+                Text = b.Name
+            });
+
+
+            ViewBag.genre = genreList;
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Book Book)
+        {
+            Book.CreatedBy = _userManager.GetUserName(User);
+            Book.GenreId = 1;
+            Book.DateCreated = DateTime.Now;
+            var createBook = await _book.AddAsync(Book);
+
+            //if (createBook)
+            //{
+            //    return RedirectToAction("Index");
+            //}
 
             if (createBook)
             {
-                return Ok("Book Created");
-            }
-            else{
-                return BadRequest(new { message = "Unable to create Book details" });
-            }
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var users = await _book.GetAll();
-            return Ok(users);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
-        {
-            var user = await _book.GetById(id);
-            return Ok(user);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] Book book)
-        {
-            book.Id = id;
-            var updateBook = await _book.Update(book);
-
-            if (updateBook)
-            {
-                return Ok("Book Updated");
+                Alert("Book created successfully.", NotificationType.success);
+                return RedirectToAction("Index");
             }
             else
             {
-                return BadRequest(new { message = "Unable to update Book details" });
+                Alert("Book not created!", NotificationType.error);
             }
+
+
+            return View();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            var deleteBook = await _book.Delete(id);
-            if (deleteBook)
-            {
-                return Ok("Book Deleted");
-            }
-            else
-            {
-                return BadRequest(new { message = "Unable to delete Book details" });
-            }
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -34,7 +34,6 @@ namespace BookWeb.Services
             }
             return true;
         }
-
         public async Task<bool> Delete(int Id)
         {
             // find the entity/object

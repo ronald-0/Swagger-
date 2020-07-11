@@ -19,8 +19,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
     <PackageReference Include="NSwag.AspNetCore" Version="11.19.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Author\" />
-  </ItemGroup>
 </Project>

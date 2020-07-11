@@ -7,15 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 using BookWeb.Models;
 using BookWeb.Interface;
 using BookWeb.Entities;
+using Microsoft.AspNetCore.Identity;
+using BookWeb.Enums;
 
 namespace BookWeb.Controllers
 {
-    public class AuthorController : Controller
+    public class AuthorController : BaseController
     {
         private IAuthor _author;
-        public AuthorController(IAuthor author)
+
+        private readonly UserManager<ApplicationUser> _userManager;
+        public AuthorController(IAuthor author, UserManager<ApplicationUser> userManager)
         {
             _author = author;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index()
@@ -37,10 +42,64 @@ namespace BookWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Author author)
         {
-
+            author.CreatedBy = _userManager.GetUserName(User);
+            author.DateCreated = DateTime.Now;
             var createAuthor = await _author.AddAsync(author);
 
+            //if (createAuthor)
+            //{
+            //    return RedirectToAction("Index");
+            //}
+
             if (createAuthor)
+            {
+                Alert("Author created successfully😃.", NotificationType.success);
+                return RedirectToAction("Index","Home");
+            }
+            else
+            {
+                Alert("Author not created😔!", NotificationType.error);
+            }
+
+
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var editAuthor = await _author.GetById(id);
+
+            if (editAuthor == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(editAuthor);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Author author)
+        {
+
+            var editAuthor = await _author.Update(author);
+
+            if (editAuthor && ModelState.IsValid)
+            {
+                Alert("Author edited successfully😃.", NotificationType.success);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                Alert("Author not edited😔.", NotificationType.error);
+            }
+            return View();
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var deleteAuthor = await _author.Delete(id);
+            if (deleteAuthor)
             {
                 return RedirectToAction("Index");
             }

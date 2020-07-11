@@ -1,62 +1,71 @@
-﻿using System;
+﻿using BookWeb.Dtos;
+using BookWeb.Entities;
+using BookWeb.Interface;
+using BookWeb.Interfaces;
+using BookWeb.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using BookWeb.Dtos;
-using BookWeb.Entities;
-using BookWeb.Interface;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BookWeb.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    //[Route("api/user")]
+    //[ApiController]
+    public class UserController : Microsoft.AspNetCore.Mvc.Controller
     {
+        private IAccount _account;
         private IUser _userService;
         private IConfiguration _config;
 
-        public UserController(IUser userService, IConfiguration config)
+        public UserController(IAccount account, IUser userService, IConfiguration config)
         {
+            _account = account;
             _userService = userService;
             _config = config;
         }
         // GET: /<controller>/
-      
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] UserDtos userDto)
-        {
-            // map dto to entity
-           // var userdto = _mapper.Map<User>(userDto);
 
-            var user = new User
-            {
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
-                Email = userDto.Email,
-                Username  = userDto.Username,
-                PhoneNo  = userDto.PhoneNo
-            };
-            try
-            {
-                // save 
-                var userCreated = _userService.Create(user, userDto.Password);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                // return error message if there was an exception
-                return BadRequest(new { message = ex.Message });
-            }
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] UserDtos registerUser)
+        {
+            ApplicationUser user = new ApplicationUser();
+
+            user.FirstName = registerUser.FirstName;
+            user.LastName = registerUser.LastName;
+            user.UserName = registerUser.Username;
+            user.Email = registerUser.Email;
+
+
+            var newUser = await _account.CreateUser(user, registerUser.Password);
+            if (newUser)
+                return RedirectToAction("Index");
+
+            return View();
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+
+            return View();
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var model = await _userService.GetAll();
+
+            if (model != null)
+                return View(model);
+            return View();
+        }
 
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] LoginDto userDto)
@@ -80,7 +89,7 @@ namespace BookWeb.Controllers
                     new Claim(ClaimTypes.GivenName, user.FirstName + " " + user.LastName),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials =  new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             //var claims = new List<Claim>
             //        {
@@ -99,7 +108,7 @@ namespace BookWeb.Controllers
 
 
 
-            
+
 
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -121,6 +130,11 @@ namespace BookWeb.Controllers
                 access_token = tokenHandler.WriteToken(token),
                 expires = Expires
             });
+        }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
     }

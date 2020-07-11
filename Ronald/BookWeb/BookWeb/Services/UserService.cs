@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿
 using BookWeb.Data;
 using BookWeb.Entities;
-using BookWeb.Interface;
+using BookWeb.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookWeb.Services
 {
@@ -55,24 +58,50 @@ namespace BookWeb.Services
             return user;
         }
 
-        public void Delete(int id)
+        public async Task<bool> Delete(int Id)
         {
-            throw new NotImplementedException();
+            // find the entity/object
+            var user = await _context.BookUsers.FindAsync(Id);
+
+            if (user != null)
+            {
+                _context.BookUsers.Remove(user);
+                _context.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<User>> GetAll()
         {
-            throw new NotImplementedException();
+
+            return await _context.BookUsers.ToListAsync();
         }
 
-        public User GetById(int id)
+        public async Task<User> GetById(int Id)
         {
-            throw new NotImplementedException();
+            var user = await _context.BookUsers.FindAsync(Id);
+
+            return user;
         }
 
-        public void Update(User user, string password = null)
+        public async Task<bool> Update(User user, string password = null)
         {
-            throw new NotImplementedException();
+            var us = await _context.BookUsers.FindAsync(user.Id);
+            if (us != null)
+            {
+                us.FirstName = user.FirstName;
+                us.LastName = user.LastName;
+                us.Username = user.Username;
+                us.Email = user.Email;
+                us.PhoneNo = user.PhoneNo;
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
         }
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
